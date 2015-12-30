@@ -1,21 +1,70 @@
-<html>
+<html ng-app="manualGeoApp">
     <head>
-        <title>Manual GeoLocation popup</title>
-        <style>
-            body {
-                font-family: arial, sans-serif;
-                background-color: #ffc;
-            }
-        </style>
+        <title>Manual geo location popup</title>
+        <!-- Angular Material style sheet -->
+        <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
+
+        <!-- Angular Material requires Angular.js Libraries -->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
+
+        <!-- Angular Material Library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
+
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBQvue7gzVxHf3mzP1nFDAs3qANrA0NIgA"></script>
-        <script type="text/javascript" src="libs/jquery-1.11.3.min.js"></script>
-        <script src="popup.js"></script>
+        <script src="js/app.js"></script>
     </head>
-    <body>
-    <h1 style='font-size: medium'>Manual GeoLocation</h1>
-    <a id='toggle' href='#'><span id='toggleSpan'>disable</span></a>
-    <br/> <br/>
-    <span style='font-size: small'>Drag the marker, double click on the desired location.</span><br/>
-    <div id='map_canvas' style='width: 400px; height: 400px;'></div>
+    <body layout="column" style="height: 620px;" ng-controller="manualGeoAppCtrl">
+        <md-toolbar layout="row" >
+            <div class="md-toolbar-tools">
+                <h3 class="ng-binding">Manual Geolocation</h3>
+                <span flex></span>
+                <md-button>
+                    <md-switch ng-model="moduleEnabled" ng-change="enableChange(moduleEnabled)" aria-label="enable or disable"><span ng-show="!moduleEnabled">OFF</span><span ng-show="moduleEnabled">ON</span></md-switch>
+                </md-button>
+            </div>
+
+        </md-toolbar>
+        <md-content>
+            <div id='map_canvas' style='width: 400px; height: 400px;'></div>
+        </md-content>
+        <md-toolbar layout="column" style="font-size: 10pt">
+            <div>
+                <div layout layout-margin>
+                    <div flex="15" layout layout-align="center center">
+                        <span class="md-body-1">Latitude</span>
+                    </div>
+                    <div flex="100"></div>
+                    <div flex="20" layout layout-align="center center">
+                        <input flex ng-change="changePosition()" ng-model="lat">
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div layout layout-margin>
+                    <div flex="15" layout layout-align="center center">
+                        <span class="md-body-1">Longitude</span>
+                    </div>
+                    <div flex="100"></div>
+                    <div flex="20" layout layout-align="center center">
+                        <input flex ng-change="changePosition()" ng-model="lng">
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div layout layout-margin>
+                    <div flex="15" layout layout-align="center center">
+                        <span class="md-body-1">Accuracy</span>
+                    </div>
+                    <md-slider flex="100" min="0" max="500" ng-change="changeRadius()" ng-model="accuracy" aria-label="red" id="red-slider" class>
+                    </md-slider>
+                    <div flex="20" layout layout-align="center center">
+                        <input flex type="number" ng-change="changeRadius()" ng-model="accuracy" aria-label="red" aria-controls="red-slider">
+                    </div>
+                </div>
+            </div>
+        </md-toolbar>
     </body>
 </html>

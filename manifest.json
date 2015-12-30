@@ -1,10 +1,11 @@
 {
    "manifest_version": 2,
    "background": {
-      "scripts": ["background.js"]
+      "scripts": ["background.js"],
+      "persistent": true
    },
-   "name": "Getting started example",
-   "description": "This extension shows a Google Image search result for the current page",
+   "name": "Manual Geolocation",
+   "description": "Override HTML5 GeoLocation API and return an arbitrary location.",
    "version": "1.0",
    "content_scripts": [ {
       "js": [ "fakegeo_content.js" ],
@@ -15,6 +16,6 @@
       "default_icon": "blue_dot_circle.png",
       "default_popup": "popup.html"
    },
-   "content_security_policy": "script-src 'self' https://maps.googleapis.com https://maps.gstatic.com https://mts0.googleapis.com https://mts1.googleapis.com; object-src 'self'",
+   "content_security_policy": "script-src 'self' https://maps.googleapis.com https://ajax.googleapis.com https://maps.gstatic.com https://mts0.googleapis.com https://mts1.googleapis.com; object-src 'self'",
    "permissions": [ "geolocation", "webNavigation", "tabs"]
 }
