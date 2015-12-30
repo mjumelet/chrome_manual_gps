@@ -1,0 +1,20 @@
+{
+   "manifest_version": 2,
+   "background": {
+      "scripts": ["background.js"]
+   },
+   "name": "Getting started example",
+   "description": "This extension shows a Google Image search result for the current page",
+   "version": "1.0",
+   "content_scripts": [ {
+      "js": [ "fakegeo_content.js" ],
+      "matches": [ "\u003Call_urls\u003E" ],
+      "run_at": "document_start"
+   } ],
+   "browser_action": {
+      "default_icon": "blue_dot_circle.png",
+      "default_popup": "popup.html"
+   },
+   "content_security_policy": "script-src 'self' https://maps.googleapis.com https://maps.gstatic.com https://mts0.googleapis.com https://mts1.googleapis.com; object-src 'self'",
+   "permissions": [ "geolocation", "webNavigation", "tabs"]
+}
