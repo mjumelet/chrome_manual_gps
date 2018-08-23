@@ -13,6 +13,21 @@
         <!-- Angular Material Library -->
         <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
         <script src="js/app.js"></script>
+        <style>
+            md-content {
+                overflow: hidden;
+                width: 100%;
+                min-width: 500px;
+            }
+            #map_canvas {
+                width: 100% !important; /*overrides 400px*/
+                height: 350px !important; /*overrides 400px*/
+            }
+            body {
+                background-color: rgb(63,81,181);
+                overflow: hidden;
+            }
+        </style>
     </head>
     <body layout="column" style="height: 620px;" ng-controller="manualGeoAppCtrl">
         <md-toolbar layout="row" >
