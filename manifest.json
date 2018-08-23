@@ -6,7 +6,7 @@
    },
    "name": "Manual Geolocation",
    "description": "Override HTML5 GeoLocation API and return an arbitrary location.",
-   "version": "1.0.2",
+   "version": "1.1.0",
    "content_scripts": [ {
       "js": [ "fakegeo_content.js" ],
       "matches": [ "\u003Call_urls\u003E" ],
