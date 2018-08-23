@@ -17,5 +17,9 @@
       "default_popup": "popup.html"
    },
    "content_security_policy": "script-src 'self' https://maps.googleapis.com https://ajax.googleapis.com https://maps.gstatic.com https://mts0.googleapis.com https://mts1.googleapis.com; object-src 'self'",
-   "permissions": [ "geolocation", "webNavigation", "tabs"]
+   "permissions": [ "geolocation", "webNavigation", "tabs", "storage"],
+   "options_ui": {
+      "page": "options.html",
+      "open_in_tab": false
+   }
 }

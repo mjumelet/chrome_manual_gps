@@ -160,7 +160,28 @@ angular.module('manualGeoApp',['ngMaterial'])
 
         $scope.moduleEnabled = (localStorage['isEnabled'] == 'true');
 
-        initialize();
+        document.addEventListener('mapLibLoaded', function() {
+            initialize();
+            notifyChange();
+        });
 
-        notifyChange();
+        // Check if API key has been set. If not, open options page.
+        chrome.storage.sync.get({
+            mapsApiKey: 'NOTSET'
+        }, function(items) {
+            if (items.mapsApiKey !== 'NOTSET') {
+                var googleMapsScript = document.createElement('script');
+                googleMapsScript.setAttribute('src','https://maps.googleapis.com/maps/api/js?key='
+                  + items.mapsApiKey.trim() + '&callback=mapLibHasLoaded');
+                document.head.appendChild(googleMapsScript);
+            } else {
+                chrome.runtime.openOptionsPage();
+            }
+        });
     });
+
+// Called by google maps script on having finished loading
+function mapLibHasLoaded() {
+    var mapLibloaded = new Event('mapLibLoaded');
+    document.dispatchEvent(mapLibloaded);
+}
